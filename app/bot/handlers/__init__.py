@@ -18,7 +18,7 @@ def start(message: types.Message):
 
     haircut_prices = types.InlineKeyboardButton(text='Cortes de cabelo', callback_data='haircuts')
     appointment = types.InlineKeyboardButton(text='Agendar horário', callback_data='appointments_week')
-    my_appointment = types.InlineKeyboardButton(text="Meu agendamento", callback_data="my_appointment")
+    my_appointment = types.InlineKeyboardButton(text="Meu agendamento", callback_data="appointments_my")
     socialmedia = types.InlineKeyboardButton(text="Redes Sociais", callback_data="socialmedia")
 
     buttons.row(haircut_prices)
