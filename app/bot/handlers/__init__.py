@@ -15,7 +15,7 @@ locale.setlocale(locale.LC_TIME, "pt_BR.utf-8")
 @bot.message_handler(commands=["start"])
 def start(message: types.Message):
     print("mensagem nova:", message.chat.id)
-    delete_message(call)
+    delete_message(message)
     buttons = types.InlineKeyboardMarkup()
 
     haircut_prices = types.InlineKeyboardButton(text='Cortes de cabelo', callback_data='haircuts')

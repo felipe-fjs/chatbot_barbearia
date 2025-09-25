@@ -23,7 +23,7 @@ def primary_menu(call: types.CallbackQuery):
 
 
 def haircuts(call: types.CallbackQuery):
-    delete_message(call)
+    delete_message(call.message)
 
     buttons = types.InlineKeyboardMarkup()
     return_menu(buttons, call)
@@ -33,10 +33,11 @@ def haircuts(call: types.CallbackQuery):
     bot.send_message(chat_id=call.message.chat.id, text=text, reply_markup=buttons)
 
 def socialmedia(call: types.CallbackQuery):
+    delete_message(call.message)
+
     chat_id = call.message.chat.id
     message_id = call.message.message_id
 
-    
     buttons = types.InlineKeyboardMarkup()
 
     wpp = types.InlineKeyboardButton(text="Whatsapp", callback_data="wpp")

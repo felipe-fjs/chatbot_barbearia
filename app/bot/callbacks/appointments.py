@@ -11,7 +11,7 @@ week_days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domin
 
 
 def my_appointment(call: CallbackQuery):
-    delete_message(call)
+    delete_message(call.message)
     chat_id = call.message.chat.id
     print(chat_id)
 
@@ -37,7 +37,7 @@ def my_appointment(call: CallbackQuery):
     start(message=call.message)
 
 def appointments_days(call: CallbackQuery):
-    delete_message(call)
+    delete_message(call.message)
     buttons = InlineKeyboardMarkup()
 
     appoints = get_free_appointments()
@@ -67,7 +67,7 @@ Infelizmente não temos mais horários disponíveis para esta semana.
     start(call.message)
 
 def appointments_hours(call: CallbackQuery):
-    delete_message(call)
+    delete_message(call.message)
     week_day = int(call.data.split("_")[2])
 
     buttons = InlineKeyboardMarkup()
@@ -97,7 +97,7 @@ Infelizmente, todos os horários para este dia já foram preenchidos.
     appointments_days(call)
 
 def appointments_confirm(call: CallbackQuery):
-    delete_message(call)
+    delete_message(call.message)
     buttons = InlineKeyboardMarkup()
 
     appoint_id = int(call.data.split("_")[2])
@@ -132,7 +132,7 @@ Parece que outro cliente solicitou a última vaga de [{appoint.hour.hour}:00] an
     appointments_hours(call)
     
 def appointments_register(call: CallbackQuery):
-    delete_message(call)
+    delete_message(call.message)
 
     appoint_id = int(call.data.split("_")[2])
     appoint = get_appointment(appoint_id)
@@ -147,7 +147,7 @@ def appointments_register(call: CallbackQuery):
     bot.send_message(chat_id=get_admin().chat_id, text=text)
     
 def appointments_cancel(call: CallbackQuery):
-    delete_message(call)
+    delete_message(call.message)
 
     appoint_id = call.data.split("_").pop()
     chat_id = call.message.chat.id
@@ -177,7 +177,7 @@ Se o problema continuar, entre em contato com a equipe da barbearia 💈."""
     ...
 
 def appointments_cancelConfirm(call: CallbackQuery):
-    delete_message
+    delete_message(call.message)
 
     appoint_id = call.data.split("_").pop()
     chat_id = call.message.chat.id
