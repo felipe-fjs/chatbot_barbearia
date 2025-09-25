@@ -21,7 +21,6 @@ def socialmedia(call: types.CallbackQuery):
     delete_message(call.message)
 
     chat_id = call.message.chat.id
-    message_id = call.message.message_id
 
     buttons = types.InlineKeyboardMarkup()
 
