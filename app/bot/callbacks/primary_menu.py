@@ -34,7 +34,6 @@ def socialmedia(call: types.CallbackQuery):
     
     text:str = "Minha mídias sociais são:"
 
-    delete_message(call)
     bot.send_message(chat_id=chat_id, text=text, reply_markup=buttons)
 
 def primary_menu(call: types.CallbackQuery):
