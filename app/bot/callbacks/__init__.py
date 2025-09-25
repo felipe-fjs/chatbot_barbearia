@@ -2,7 +2,7 @@ from telebot import types
 from app.bot import bot
 
 
-def return_menu(buttons: types.InlineKeyboardMarkup, call: types.CallbackQuery, previous_menu: str = None):
+def return_menu(buttons: types.InlineKeyboardMarkup, previous_menu: str = None):
     "Adiciona o botôes de 'menu inicial'"
     # "Adiciona os botôes de 'menu inicial' e 'menu anterior'"
 

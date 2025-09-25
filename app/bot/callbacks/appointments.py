@@ -27,7 +27,7 @@ def my_appointment(call: CallbackQuery):
 
             buttons = InlineKeyboardMarkup()
             buttons.row(InlineKeyboardButton("Cancelar agendamento", callback_data=f"appointment_cancel_{your_appointment.id}"))
-            return_menu(buttons, call)
+            return_menu(buttons)
 
             text = f"Seu próximo corte foi marcado para: \n  * Dia: {your_appointment.hour.strftime('%d/%m/%Y')}"
             text += f"\nHora: {your_appointment.hour.strftime('%H:%M')}"
@@ -55,7 +55,7 @@ def appointments_days(call: CallbackQuery):
                     
         text = """✨ “Esses são os dias que temos horários disponíveis para você.
     Escolha o que ficar melhor na sua agenda e seguimos para os horários ⏰.”"""
-        return_menu(buttons, call)
+        return_menu(buttons)
 
         bot.send_message(chat_id=call.message.chat.id, text=text, reply_markup=buttons)
         return

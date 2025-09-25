@@ -11,7 +11,7 @@ def haircuts(call: types.CallbackQuery):
     delete_message(call.message)
 
     buttons = types.InlineKeyboardMarkup()
-    return_menu(buttons, call)
+    return_menu(buttons)
 
     text = "Cortes de cabelo disponíveis: \n1. Degradê, R$ 20.00\n2. Social, R$ 15.00\n3. Mullet R$ 30.00"
 
@@ -29,7 +29,7 @@ def socialmedia(call: types.CallbackQuery):
 
     buttons.row(wpp)
     buttons.row(insta)
-    return_menu(buttons, call)
+    return_menu(buttons)
     
     text:str = "Minha mídias sociais são:"
 
