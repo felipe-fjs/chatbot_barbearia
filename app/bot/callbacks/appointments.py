@@ -35,8 +35,9 @@ def my_appointment(call: CallbackQuery):
             bot.send_message(chat_id=chat_id, text=text, reply_markup=buttons)
             return
 
-    bot.send_message(chat_id=chat_id, text="Nenhum agendamento ativo foi encontrado!")
-    start(message=call.message)
+    message = bot.send_message(chat_id=chat_id, text="Nenhum agendamento ativo foi encontrado!")
+    time.sleep(3)
+    start(message=message)
 
 def appointments_days(call: CallbackQuery):
     delete_message(call.message)
@@ -59,14 +60,15 @@ def appointments_days(call: CallbackQuery):
         bot.send_message(chat_id=call.message.chat.id, text=text, reply_markup=buttons)
         return
     
+    return_menu(buttons)
     text = """🚫 Ops! Agenda cheia por aqui…
 
 Infelizmente não temos mais horários disponíveis para esta semana.
 ✂️ Mas pode ficar tranquilo: novas vagas serão abertas na sexta-feira, a partir das 6h da manhã.
 
 👉 Fique de olho para garantir seu horário antes que acabe!"""
-    bot.send_message(chat_id=call.message.chat.id, text=text)
-    start(call.message)
+    message = bot.send_message(chat_id=call.message.chat.id, text=text, reply_markup=buttons)
+    start(message)
 
 def appointments_hours(call: CallbackQuery):
     delete_message(call.message)
@@ -90,14 +92,15 @@ def appointments_hours(call: CallbackQuery):
         bot.send_message(chat_id=call.message.chat.id, text=text, reply_markup=buttons)
         return
     
+    return_menu(buttons)
     text = f"""🚫 Agenda atualizada!
 
 Enquanto você pensava, alguém foi mais rápido 😅
 Infelizmente, todos os horários para este dia já foram preenchidos.
 
 👉 Mas calma: volte e escolha outro dia disponível para garantir seu corte ✂️"""
-    appointments_days(call)
-
+    message = bot.send_message(chat_id=call.message.chat.id, text=text, reply_markup=buttons)
+   
 def appointments_confirm(call: CallbackQuery):
     delete_message(call.message)
     buttons = InlineKeyboardMarkup()
@@ -125,24 +128,26 @@ def appointments_confirm(call: CallbackQuery):
         bot.send_message(call.message.chat.id, text=text, reply_markup=buttons)
         return
 
+    return_menu(buttons)
     text = f"""⚡ Esse horário acabou de ser preenchido!
 
 Parece que outro cliente solicitou a última vaga de [{appoint.hour.hour}:00] antes de você.
 
 👉 Por favor, selecione outro horário disponível nesse dia para não ficar sem seu corte 💈."""
-    bot.send_message(call.message.chat.id, text=text)
-    appointments_hours(call)
+    bot.send_message(call.message.chat.id, text=text, reply_markup=buttons)
     
 def appointments_register(call: CallbackQuery):
     delete_message(call.message)
 
+    buttons = InlineKeyboardMarkup()
+    return_menu(buttons)
     appoint_id = int(call.data.split("_")[2])
     appoint = get_appointment(appoint_id)
 
     appoint.status = AppointmentStatus.REQUESTED
     update_appointment(appoint)
     text = f"Sua solicitação foi enviada com sucesso para o admin!"
-    message = bot.send_message(chat_id=call.message.chat.id, text=text)
+    message = bot.send_message(chat_id=call.message.chat.id, text=text, reply_markup=buttons)
     time.sleep(5)
     start(message)
 
@@ -172,13 +177,12 @@ def appointments_cancel(call: CallbackQuery):
         bot.edit_message_text(text=text, chat_id=chat_id, message_id=message_id, reply_markup=buttons)
         return
     
+    return_menu(buttons)
     text = f"""⚠️ Ops! Tivemos uma falha ao acessar seu cadastro no sistema.
 
 👉 Tente novamente em alguns instantes.
 Se o problema continuar, entre em contato com a equipe da barbearia 💈."""
-    bot.send_message(chat_id=chat_id, text=text)
-    start(call.message)
-    ...
+    bot.send_message(chat_id=chat_id, text=text, reply_markup=buttons)
 
 def appointments_cancelConfirm(call: CallbackQuery):
     delete_message(call.message)
@@ -212,7 +216,7 @@ Esperamos ver você em breve para marcar um novo horário 💈."""
 👉 Tente novamente em alguns instantes.
 Se o problema continuar, entre em contato com a equipe da barbearia 💈."""
     
-    bot.send_message(chat_id=chat_id, text=text, )
+    bot.send_message(chat_id=chat_id, text=text, reply_markup=buttons)
 
 def appointment_callback_handler(call: CallbackQuery):
     print("ERROR no HANDLER")
