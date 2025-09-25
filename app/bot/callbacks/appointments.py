@@ -139,15 +139,13 @@ Parece que outro cliente solicitou a última vaga de [{appoint.hour.hour}:00] an
 def appointments_register(call: CallbackQuery):
     delete_message(call.message)
 
-    buttons = InlineKeyboardMarkup()
-    return_menu(buttons)
     appoint_id = int(call.data.split("_")[2])
     appoint = get_appointment(appoint_id)
 
     appoint.status = AppointmentStatus.REQUESTED
     update_appointment(appoint)
     text = f"Sua solicitação foi enviada com sucesso para o admin!"
-    message = bot.send_message(chat_id=call.message.chat.id, text=text, reply_markup=buttons)
+    message = bot.send_message(chat_id=call.message.chat.id, text=text)
     time.sleep(5)
     start(message)
 
