@@ -14,12 +14,11 @@ Desenvolvido em Python, com suporte a banco de dados e migrações.
 - Marcação de horário automático  
 - Consulta dos horários disponíveis  
 - Respostas a dúvidas frequentes (ex: “qual horário disponível?”, “qual valor do corte?”)  
-- Interface simples via chat do Telegram [![Telegram](https://img.shields.io/badge/Telegram-blue?logo=telegram)]
-- Sistema de migrações (versão do banco de dados)
+- Interface simples via chat do Telegram ![Telegram](https://img.shields.io/badge/Telegram-blue?logo=telegram)
+- Sistema de migrações 
 
 ## 🛠 Tecnologias
 
 - Python  
-- Alembic / Migrations  
-- (Adicionar frameworks ou bibliotecas usadas: Flask, FastAPI, SQLAlchemy etc.)  
-- Banco de dados (SQLite / PostgreSQL / MySQL etc.)  
+- Telebot
+- Banco de dados MySQL  
