@@ -30,7 +30,7 @@ def haircuts(call: types.CallbackQuery):
 
     text = "Cortes de cabelo disponíveis: \n1. Degradê, R$ 20.00\n2. Social, R$ 15.00\n3. Mullet R$ 30.00"
 
-    bot.send_message(message=call.message, text=text, reply_markup=buttons)
+    bot.send_message(chat_id=call.message.chat.id, text=text, reply_markup=buttons)
 
 def socialmedia(call: types.CallbackQuery):
     chat_id = call.message.chat.id
@@ -52,3 +52,4 @@ def socialmedia(call: types.CallbackQuery):
     bot.send_message(chat_id=chat_id, text=text, reply_markup=buttons)
 
 
+bot.register_callback_query_handler(callback=primary_menu, func=lambda call: not call.data.startswith("appoint"))
