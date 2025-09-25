@@ -10,9 +10,7 @@ def return_menu(buttons: types.InlineKeyboardMarkup, call: types.CallbackQuery, 
     if previous_menu:
         buttons.row(types.InlineKeyboardButton("Menu anterior", callback_data=previous_menu))
 
-def delete_message(message: types.Message):
-    if message.message_id:
-        bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
+
 
 
 import app.bot.callbacks.primary_menu as primary_menu

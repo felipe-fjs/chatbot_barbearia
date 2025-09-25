@@ -1,7 +1,5 @@
-from app.bot import bot
+from app.bot import bot, delete_message
 from app.model.Client import register_client
-from app.bot.callbacks import delete_message
-
 from telebot import types
 
 from datetime import datetime

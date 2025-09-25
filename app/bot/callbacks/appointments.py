@@ -1,6 +1,6 @@
-from app.bot.callbacks import  return_menu, delete_message
+from app.bot import bot, delete_message
+from app.bot.callbacks import  return_menu
 from app.bot.handlers import start
-from app.bot import bot
 from app.model import now_br
 from app.model.Appointment import Appointment, AppointmentStatus, get_free_appointments, update_appointment, get_appointment, get_client_last_appointment
 from app.model.Client import get_client, Client
