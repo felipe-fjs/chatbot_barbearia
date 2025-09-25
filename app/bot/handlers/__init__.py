@@ -1,5 +1,6 @@
 from app.bot import bot
 from app.model.Client import register_client
+from app.bot.callbacks import delete_message
 
 from telebot import types
 
@@ -14,6 +15,7 @@ locale.setlocale(locale.LC_TIME, "pt_BR.utf-8")
 @bot.message_handler(commands=["start"])
 def start(message: types.Message):
     print("mensagem nova:", message.chat.id)
+    delete_message(call)
     buttons = types.InlineKeyboardMarkup()
 
     haircut_prices = types.InlineKeyboardButton(text='Cortes de cabelo', callback_data='haircuts')
