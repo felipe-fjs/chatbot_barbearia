@@ -7,6 +7,8 @@ from app.model.Client import get_client, Client
 from app.model.Admin import  get_admin
 from telebot.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
+import time
+
 week_days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
 
 
@@ -140,7 +142,9 @@ def appointments_register(call: CallbackQuery):
     appoint.status = AppointmentStatus.REQUESTED
     update_appointment(appoint)
     text = f"Sua solicitação foi enviada com sucesso para o admin!"
-    bot.send_message(chat_id=call.message.chat.id, text=text)
+    message = bot.send_message(chat_id=call.message.chat.id, text=text)
+    time.sleep(5)
+    start(message)
 
     # enviar mensagem para o administrador
     text = f"Eae admin!\nNova solicitação de agendamento para corte na área! id={appoint}"
